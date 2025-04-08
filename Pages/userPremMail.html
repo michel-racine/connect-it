@@ -1,0 +1,138 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" href="../styles.css" />
+    <link rel="icon" type="image/png" href="../Images/connect-it-bee-icon.png" />
+    <script src="../JavaScript/utils.js"></script>
+    <title>Premium Mail</title>
+  </head>
+  <body>
+    <div class="background-logo2"></div>
+    <div class="header">
+      <h3>Mail</h3>
+    </div>
+    <div class="menu-bar">
+      <ul>
+        <li>
+          <a href="./userPremMail.html">Mail</a>
+        </li>
+        <li>
+          <a href="./userProfile.html">Profile</a>
+        </li>
+        <li>
+          <a href="./userMatches.html">Matches</a>
+        </li>
+        <li>
+          <a href="./userEvents.html">Events</a>
+        </li>
+        <li>
+          <a href="./userContact.html">Contact</a>
+        </li>
+        <li>
+          <a href="./userPremCC.html">Payment Info</a>
+        </li>
+      </ul>
+    </div>
+    <div>
+      <img title="profile-image" style="width: 20%;" src="../Images/face.png"></div>
+    </div>
+    
+    <div>
+      <button onclick="openModal()">Inbox (4)</button>
+      <button onclick="openModal2()">Sent (4)</button>
+      <button id="deletedButton" onclick="openModal3()">Deleted (6)</button>
+    </div>
+
+    <!-- The Modal -->
+    <div id="emailModal" class="modal">
+      <div class="modal-content">
+        <span class="close" onclick="closeModal()">&times;</span>
+        <h2>Incoming Mail</h2>
+        <ul class="email-list">
+          <li>alice@example.com [Great meeting]</li>
+          <li>bob@example.com [How is it going?]</li>
+          <li>charlie@example.com [Change of plans...]</li>
+          <li>david@example.com [REQUEST FOR CONNECTION]</li>
+          <li>eva@example.com [REQUEST FOR CONNECTION]</li>
+        </ul>
+      </div>
+    </div>
+
+    <div id="emailModal2" class="modal">
+      <div class="modal-content">
+        <span class="close" onclick="closeModal2()">&times;</span>
+        <h2>Sent</h2>
+        <ul class="email-list">
+          <li>tango@example.com [Are you ok?]</li>
+          <li>uniform@example.com [What the heck happened last night?]</li>
+          <li>victor@example.com [The document is ready]</li>
+          <li>whisky@example.com [I won't be attending tonight.]</li>
+        </ul>
+      </div>
+    </div>
+
+    <div id="emailModal3" class="modal">
+      <div class="modal-content">
+        <span class="close" onclick="closeModal3()">&times;</span>
+        <h2>Deleted</h2>
+        <ul class="email-list">
+          <li class="q">mike@example.com [I forgot the password]</li>
+          <li class="q">november@example.com [Where were you guys?]</li>
+          <li class="q">oscar@example.com [Are you still alive?]</li>
+          <li class="q">papa@example.com [Dude, where's my car?]</li>
+          <li class="q">quebec@example.com [I can't feel my legs]</li>
+          <li class="q">romeo@example.com [Do you got the stuff?]</li>
+        </ul>
+        <button onclick="clearDeletedEmails()">Clear</button>
+      </div>
+    </div>
+
+    <a href="../userPrem.html" style="position: fixed; bottom: 20px; right: 20px; background-color:  rgba(245, 204, 51, 1); color: white; padding: 10px 20px; text-decoration: none; border-radius: 5px; font-size: 16px; box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);">Home</a>
+    <a href="../index.html" style="position: fixed; bottom: 20px; right: 20px; background-color:  rgba(245, 204, 51, 1); color: white; padding: 10px 20px; margin-right: 100px; text-decoration: none; border-radius: 5px; font-size: 16px; box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);">Logout</a>
+
+
+    <script>
+      function clearDeletedEmails() {
+        if (confirm('Are you sure?')) {
+          var q = document.getElementsByClassName('q');
+          for (var i = 0; i < q.length; ++i) {
+            q[i].innerHTML = '';
+          }
+          document.getElementById('deletedButton').innerHTML = 'Deleted (0)';
+        }
+      }
+    </script>
+
+    <script>
+      // Open Modal
+      function openModal() {
+        document.getElementById('emailModal').style.display = 'block';
+      }
+      function openModal2() {
+        document.getElementById('emailModal2').style.display = 'block';
+      }
+      function openModal3() {
+        document.getElementById('emailModal3').style.display = 'block';
+      }
+      // Close Modal
+      function closeModal() {
+        document.getElementById('emailModal').style.display = 'none';
+      }
+      function closeModal2() {
+        document.getElementById('emailModal2').style.display = 'none';
+      }
+      function closeModal3() {
+        document.getElementById('emailModal3').style.display = 'none';
+      }
+      // Close the modal when clicking outside
+      window.onclick = function (event) {
+        let modal = document.getElementById('emailModal');
+        if (event.target === modal) {
+          closeModal();
+        }
+      };
+    </script>
+  </body>
+</html>

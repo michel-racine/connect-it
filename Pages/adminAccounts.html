@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Accounts Dashboard</title>
+    <link
+      rel="icon"
+      type="image/png"
+      href="../Images/connect-it-bee-icon.png" />
+    <link rel="stylesheet" href="../styles.css" />
+    <script src="../JavaScript/utils.js"></script>
+  </head>
+  <body style="background-color: rgb(162, 201, 228)">
+    <div class="background-logo2"></div>
+    <div class="header">
+      <h3 id="dashboard-title">Admin Account Management Dashboard</h3>
+    </div>
+    <div class="menu-bar">
+      <ul>
+        <li>
+          <a href="./adminMail.html">Mail</a>
+        </li>
+        <li>
+          <a href="./adminDatabases.html">Databases</a>
+        </li>
+        <li>
+          <a href="./adminAccounts.html">Accounts</a>
+        </li>
+        <li>
+          <a href="./adminSecurity.html">Security</a>
+        </li>
+        <li>
+          <a href="./adminTesting.html">Testing</a>
+        </li>
+      </ul>
+    </div>
+    <hr />
+    <div class="content-container">
+      <div class="dropdown-section">
+        <label for="options">Search By</label>
+        <select id="options">
+          <option value="ID">Account ID</option>
+          <option value="FIRST_NAME">First Name</option>
+          <option value="LAST_NAME">Last Name</option>
+          <option value="MAIL_ADDRESS">Mailing Address</option>
+          <option value="EMAIL_ADDRESS">Email Address</option>
+          <option value="IP_ADDRESS">IP Address</option>
+          <option value="*">All Fields</option>
+        </select>
+      </div>
+      <div class="dropdown-section">
+        <label for="options2">Action</label>
+        <select id="options">
+          <option value="EDIT">Edit</option>
+          <option value="DELETE">Delete</option>
+          <option value="BLACKLIST">Blacklist</option>
+          <option value="REMOVE_BLACKLIST">Remove from Blacklist</option>
+        </select>
+      </div>
+      <button style="margin: 0" onclick="buildQuery()">Add to Query</button>
+      <button style="margin: 0" onclick="clearQuery()">Clear</button>
+      <button style="margin: 0" onclick="fauxSuccessOutput()">Run Query</button>
+      <button style="margin: 0" onclick="displayText()">
+        Perform Action on Results
+      </button>
+      <hr />
+      <div class="input-section">
+        <input
+          type="text"
+          style="width: 40%"
+          id="user-input"
+          placeholder="Expression" />
+      </div>
+
+      <div
+        class="console-output"
+        id="console-output"
+        style="
+          background-color: black;
+          color: limegreen;
+          padding: 10px;
+          font-family: monospace;
+          font-size: 1rem;
+          text-align: left;
+          height: 200px;
+          overflow-y: auto;
+          white-space: pre-wrap;
+          border: 1px solid white;
+          margin-bottom: 40px;
+          margin-top: 20px;
+        ">
+        >>>
+      </div>
+      <button style="margin: 0" onclick="clearConsole()">Clear</button>
+    </div>
+  </body>
+</html>

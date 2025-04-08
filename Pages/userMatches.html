@@ -1,0 +1,154 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Matches</title>
+    <link
+      rel="icon"
+      type="image/png"
+      href="../Images/connect-it-bee-icon.png" />
+    <link rel="stylesheet" href="../styles.css" />
+  </head>
+  <body>
+    <div class="background-logo2"></div>
+    <div class="header">
+      <h3>Match Search</h3>
+    </div>
+
+    <div class="menu-bar">
+      <ul>
+        <li>
+          <a href="./userPremMail.html">Mail</a>
+        </li>
+        <li>
+          <a href="./userProfile.html">Profile</a>
+        </li>
+        <li>
+          <a href="./userMatches.html">Matches</a>
+        </li>
+        <li>
+          <a href="./userEvents.html">Events</a>
+        </li>
+        <li>
+          <a href="./userContact.html">Contact</a>
+        </li>
+        <li>
+          <a href="./userPremCC.html">Payment Info</a>
+        </li>
+      </ul>
+    </div>
+
+    <div class="match-container">
+      <h2>Enter Your Match Parameters</h2>
+      <div style="width: 100%; height: 1px; background-color: rgba(0,0,0,0.5); margin-bottom: 1%;"></div>
+      <form id="search-form">
+        <div
+          style="display: flex; flex-direction: flex-start; margin: 3% 4% 0 4%;">
+          
+          <div class="dropdown-section">
+            <label for="radius">Select Match Radius (km):</label>
+            <select id="radius">
+              <option value="10">10</option>
+              <option value="20">20</option>
+              <option value="50">50</option>
+              <option value="100">100</option>
+            </select>
+          </div>
+
+          <div class="dropdown-section">
+            <label for="options">Select Technical Interest:</label>
+            <select id="options" multiple>
+              <option value="Databases">Databases</option>
+              <option value="System">System</option>
+              <option value="Security">Security</option>
+              <option value="Design">Design</option>
+              <option value="Crypto">Crypto</option>
+              <option value="Mobile">Mobile</option>
+            </select>
+          </div>
+          <div class="dropdown-section">
+            <label for="options2">Select Technical Interest:</label>
+            <select id="options2" multiple>
+              <option value="Python">Python</option>
+              <option value="Java">Java</option>
+              <option value="JavaScript">JavaScript</option>
+              <option value="CSS">CSS</option>
+              <option value="SQL">SQL</option>
+              <option value="Go">Go</option>
+            </select>
+          </div>
+          <div
+          class="dropdown-section"
+          style="display: flex; flex-direction: column; gap: 8px;">
+          <label>Choose an option:</label>
+        
+          <div style="display: flex; align-items: center; gap: 8px;">
+            <input type="radio" id="optionA" name="choice" value="romance" />
+            <label for="optionA">Romantic</label>
+          </div>
+        
+          <div style="display: flex; align-items: center; gap: 8px;">
+            <input type="radio" id="optionB" name="choice" value="professional"/>
+            <label for="optionB">Professional</label>
+          </div>
+        
+          <div style="display: flex; align-items: center; gap: 8px;">
+            <input type="radio" id="optionC" name="choice" value="friendship" />
+            <label for="optionC">Friendship</label>
+          </div>
+        </div>
+      </form>
+    </div>
+    <button id="submitButton" type="submit">Submit</button>
+    <script>
+        // This line from ChatGPT
+        const radioValue = document.querySelector('input[name="choice"]:checked')?.value;
+
+        document.getElementById('submitButton').addEventListener('click', function (){
+        var s = 'SEARCHING RESULTS FOR MATCHES INCLUDING:\n';
+        for (var i = 0; i < document.forms[0][0].length; ++i) {
+          s += document.forms[0][0][i].selected === true ? document.forms[0][0][i].value + ' | ' : '';
+        }
+        s += "\nCROSS-REFERENCE: \n";
+        for (var i = 0; i < document.forms[0][1].length; ++i) {
+          s += document.forms[0][1][i].selected === true ? document.forms[0][1][i].value + ' | ' : '';
+        }
+
+        let text = [
+            '[+] 7 Possible Matches Found',
+          ];
+          for (var i = 0; i < text.length; ++i) {
+            setTimeout(yow(text[i]), 500);
+          }
+          function yow(texto) {
+            let outputElement = document.getElementById('search-results');
+            outputElement.textContent += texto;
+          }
+      });
+    </script>
+    <div>
+      <textarea id='search-results' placeholder='Search results' readonly style="font-size: 1.5em; color: rgba(0,255,0,1); background-color: black; width: 60%; height: 200px; margin-top: 2%;">
+
+      </textarea>
+    </div>
+    <button id="clearButton" type="submit">Clear</button>
+    <script>
+      document.getElementById('clearButton').addEventListener('click', function(){
+        document.getElementById('search-results').value = '';
+      });
+      
+      document
+        .getElementById('search-form')
+        .addEventListener('submit', function (event) {
+          event.preventDefault();
+          alert('Searching for matches...');
+          const select = document.getElementById('options2');
+          const selected = Array.from(select.selectedOptions).map(
+            (option) => option.value
+          );
+          console.log('Selected options:', selected);
+        });
+    </script>
+  </body>
+</html>

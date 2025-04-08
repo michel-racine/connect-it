@@ -1,0 +1,226 @@
+/* General Page Styling */
+div {text-align: center;}
+
+body {
+  margin: 0;
+  padding: 0;
+  position: relative;
+  background-color: rgba(255, 204, 51, 0.5);
+  font-family: 'Poppins', sans-serif;
+}
+/* Modal Background */
+.modal {
+  display: none;
+  position: fixed;
+  z-index: 1000;
+  left: 0;
+  top: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0, 0, 0, 0.5);
+}
+
+/* Modal Content */
+.modal-content {
+  background-color: white;
+  margin: 15% auto;
+  padding: 20px;
+  width: 80%;
+  border-radius: 8px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+}
+
+/* Close Button */
+.close {
+  float: right;
+  font-size: 24px;
+  cursor: pointer;
+}
+
+/* Email List Styling */
+.email-list {
+  list-style: none;
+  padding: 0;
+}
+
+.email-list li {
+  padding: 8px;
+  border-bottom: 1px solid #ddd;
+}
+
+.email-list li:last-child {
+  border-bottom: none;
+}
+
+.email-list li:hover {
+  background-color: #f1f1f1;
+  cursor: pointer;
+}
+
+/* Background Bee Logo */
+.background-logo, .background-logo2 {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vw;
+  background: url('Images/connect-it-bee-logo.png') repeat;
+  background-size: 300px 205px;
+  z-index: -10;
+}
+
+.background-logo { opacity: 0.25; }
+.background-logo2 { opacity: 0.1; }
+
+/* Header */
+.header {
+  text-align: center;
+  font-size: clamp(2rem, 2vw, 3rem);
+  color: black;
+  text-shadow: 2px 2px 6px rgba(0, 0, 0, 0.22);
+  padding: 0px 0;
+}
+
+/* Login Box */
+.login-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+input {
+  margin: 10px;
+  padding: 10px ;
+  width: 90%;
+  font-size: 1rem;
+  border: 2px solid rgba(255, 215, 0, 0.8);
+  background: rgba(255, 255, 255, 0.6);
+  color: black;
+}
+
+button {
+  padding: 12px 24px;
+  font-size: 1rem;
+  background-color: rgba(255, 193, 7, 0.85);
+  color: black;
+  border: none;
+  cursor: pointer;
+  margin-top: 10px;
+  text-shadow: 1px 1px 2px rgba(255, 255, 255, 0.4);
+  transition: background 0.3s ease-in-out;
+}
+
+button:hover {
+  background-color: rgba(255, 152, 0, 0.9);
+}
+
+/* Honey-Themed Menu */
+.menu-bar {
+  text-align: center;
+  background: rgba(255, 215, 0, 0.67);
+  padding: 10px 0;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3);
+  border-bottom: 2px solid rgba(0, 0, 0, 0.4);
+}
+
+.menu-bar ul {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+  display: flex;
+  justify-content: center;
+  gap: 20px;
+}
+
+.menu-bar ul li {
+  position: relative;
+}
+
+.menu-bar ul li a {
+  display: block;
+  padding: 12px 20px;
+  color: black;
+  text-decoration: none;
+  font-weight: bold;
+  transition: background 0.3s ease-in-out;
+}
+
+/* Blue Honey Accents */
+.menu-bar ul li:hover a {
+  background: rgba(33, 150, 243, 0.85);
+  color: white;
+}
+
+/* Dropdown Menu */
+.menu-bar ul .dropdown {
+  display: none;
+  position: absolute;
+  top: 100%;
+  left: 50%;
+  transform: translateX(-50%);
+  background: rgba(255, 235, 59, 0.85);
+  min-width: 160px;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.2);
+}
+
+.menu-bar ul li:hover .dropdown {
+  display: block;
+}
+
+/* Dropdown Styling */
+.menu-bar ul .dropdown li {
+  display: block;
+}
+
+.menu-bar ul .dropdown li a {
+  padding: 12px;
+  display: block;
+  color: black;
+}
+
+.menu-bar ul .dropdown li:hover {
+  background: rgba(255, 223, 0, 0.85);
+}
+/* Dropdown Section Styling */
+.dropdown-section {
+  margin: auto;
+  font-family: Arial, sans-serif;
+}
+
+/* Label Styling */
+.dropdown-section label {
+  font-size: 1rem;
+  font-weight: bold;
+  display: block;
+}
+
+/* Dropdown Styling */
+.dropdown-section select {
+  width: 100%;
+  max-width: 300px;
+  padding: 6px;
+  font-size: 1rem;
+  border: 2px solid rgba(255, 223, 0, 0.85); /* Orange border */
+  background: rgba(255, 255, 255, 0.9); /* Light background */
+  color: #333;
+  border-radius: 5px;
+  cursor: pointer;
+}
+
+/* Button Styling */
+.dropdown-section button {
+  margin-top: 10px;
+  padding: 12px 10px;
+  font-size: 1rem;
+  font-weight: bold;
+  background-color: #44cc44;
+  color: white;
+  border: 2px solid rgba(255, 223, 0, 0.85);
+  border-radius: 5px;
+  cursor: pointer;
+  transition: background 0.3s ease-in-out;
+}
+
+.dropdown-section button:hover {
+  background-color: #e67e00; /* Slightly darker on hover */
+}

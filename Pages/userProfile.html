@@ -1,0 +1,103 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Connect-IT - Credit Card Info</title>
+    <link rel="icon" type="image/png" href="../Images/connect-it-bee-icon.png" />
+    <link rel="stylesheet" href="../styles.css" />
+    <style> 
+      label {
+        display: block;
+      }
+      input {
+        width: 50%;
+      }
+    </style>
+  </head>
+  <body>
+    <div class="background-logo2"></div>
+    <div class="header">
+      <h3 id="user-name-header">Profile</h3>
+    </div>
+
+    <div class="menu-bar">
+      <ul>
+        <li>
+          <a href="./userPremMail.html">Mail</a>
+        </li>
+        <li>
+          <a href="./userProfile.html">Profile</a>
+        </li>
+        <li>
+          <a href="./userMatches.html">Matches</a>
+        </li>
+        <li>
+          <a href="./userEvents.html">Events</a>
+        </li>
+        <li>
+          <a href="./userContact.html">Contact</a>
+        </li>
+        <li>
+          <a href="./userPremCC.html">Payment Info</a>
+        </li>
+      </ul>
+    </div>
+    <div>
+      <img title="profile-image" style="width: 20%;" src="../Images/face.png">
+      <label for="fileInput" style="display: inline-block; padding: 8px 12px; text-align: center; background-color: #ffff99; color: black; border-radius: 5px; cursor: pointer;">
+        Update Image
+      </label>
+      <input type="file" id="fileInput" style="display: none;">
+      <span id="fileName"></span>
+    </div>
+    </div>
+
+    <div>
+      <h2>Edit Information</h2>
+      <form id="profile-form">
+        <label for="user-name">username</label>
+        <input
+          type="text"
+          id="user-name"
+          name="user-name"/>
+
+        <label for="email">email</label>
+        <input
+          type="text"
+          id="email"
+          pattern="[^@]{1,}@[^@]{1,}"
+          name="email"/>
+
+        <label for="password">password</label>
+        <input type="password" id="password" pattern=".*[A-Z].*"/>
+        <label for="address">address</label>
+        <input type="text" id="address" pattern=".*[A-Z].*"/>
+        <label for="phone">phone</label>
+        <input type="text" id="phone" pattern=".*[A-Z].*"/>
+        <br />
+        <button type="submit">Submit</button>
+      </form>
+    </div>
+
+    <script>
+      document
+        .getElementById('profile-form')
+        .addEventListener('submit', function (event) {
+          event.preventDefault();
+          alert('Profile information updated successfully!');
+        });
+    </script>
+
+    <script>
+      // Retrieve username from the query parameter, this is our ad hoc props
+      const urlParams = new URLSearchParams(window.location.search);
+      const username = urlParams.get('username');
+
+      // Display the username in the header
+      // REM: Good example of .value vs .innerHTML
+      document.getElementById('user-name').value = username;
+      document.getElementById('user-name-header').innerHTML = "Profile: " + username;
+    </script>
+  </body>
+</html>

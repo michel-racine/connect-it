@@ -1,0 +1,242 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Admin Security Dashboard</title>
+    <link
+      rel="icon"
+      type="image/png"
+      href="../Images/connect-it-bee-icon.png" />
+    <link rel="stylesheet" href="../styles.css" />
+  </head>
+  <body style="background-color: rgb(162, 201, 228)">
+    <div class="background-logo2"></div>
+    <div class="header">
+      <h3>Admin Security Dashboard</h3>
+    </div>
+    <div class="menu-bar">
+      <ul>
+        <li>
+          <a href="./adminMail.html">Mail</a>
+        </li>
+        <li>
+          <a href="./adminDatabases.html">Databases</a>
+        </li>
+        <li>
+          <a href="./adminAccounts.html">Accounts</a>
+        </li>
+        <li>
+          <a href="./adminSecurity.html">Security</a>
+        </li>
+        <li>
+          <a href="./adminTesting.html">Testing</a>
+        </li>
+      </ul>
+    </div>
+    <hr />
+
+    <div class="content-container">
+      <div class="dropdown-section">
+        <label for="options">Select Database:</label>
+        <select id="options">
+          <option value="security">Security</option>
+          <option value="accounts">Accounts</option>
+          <option value="testing">Logs</option>
+          <option value="testing">Testing</option>
+        </select>
+        <label for="options2">Cryption Protocol:</label>
+        <select id="options2">
+          <option value="RSA">RSA 4096</option>
+          <option value="AES-256-GCM">AES Galois Counter Mode</option>
+          <option value="AES-256-CBC">
+            AES Code Block Cipher with PBKDF2, PKCS7
+          </option>
+        </select>
+        <br />
+        <button id="encryptButton" onclick="fauxEncrypt()">Encrypt</button>
+        <button id="decryptButton" onclick="fauxDecrypt()">Decrypt</button>
+      </div>
+
+      <div class="input-section">
+        <input
+          type="text"
+          id="user-input"
+          placeholder="asdf"
+          value="outputFileName.crypt" />
+        <p id="output-text"></p>
+      </div>
+
+      <div
+        class="console-output"
+        id="console-output"
+        onchange="alert('yow')"
+        style="
+          background-color: black;
+          color: limegreen;
+          padding: 10px;
+          font-family: monospace;
+          font-size: 1rem;
+          text-align: left;
+          height: 200px;
+          overflow-y: auto;
+          white-space: pre-wrap;
+          border: 1px solid white;
+          margin-top: 20px;
+        "></div>
+
+      <div>
+        <h3>Global Cyber Incident Response Monitoring (GCIRM)</h3>
+        <div class="map-container">
+          <img
+            id="mapImage"
+            title="global cyber incident response image"
+            src="../Images/worldCyber.png"
+            alt="Global Cyber Map" />
+          <canvas id="mapCanvas"></canvas>
+        </div>
+      </div>
+
+      <style>
+        /* Container to hold the image and canvas */
+        .map-container {
+          position: relative;
+          width: 90%;
+          margin: auto;
+        }
+
+        /* Ensure the image and canvas have the same width and height */
+        #mapImage {
+          width: 100%;
+          height: auto;
+        }
+
+        #mapCanvas {
+          position: absolute;
+          top: 0;
+          left: 0;
+          width: 100%; /* Match the width of the image */
+          height: 100%; /* Match the height of the image */
+          cursor: pointer; /* Indicate that the canvas is interactive */
+        }
+      </style>
+
+      <script>
+        const canvas = document.getElementById('mapCanvas');
+        const ctx = canvas.getContext('2d');
+        const mapImage = document.getElementById('mapImage');
+
+        // Wait for the image to load before adjusting the canvas size
+        mapImage.onload = function () {
+          // Set canvas size to match the image dimensions
+          canvas.width = mapImage.width;
+          canvas.height = mapImage.height;
+
+          // Draw the image onto the canvas
+          ctx.drawImage(mapImage, 0, 0, mapImage.width, mapImage.height);
+        };
+
+        // Handle the click event to draw red dots on the canvas
+        canvas.addEventListener('click', function (event) {
+          const rect = canvas.getBoundingClientRect();
+          const x = event.clientX - rect.left; // Get the x coordinate of the click
+          const y = event.clientY - rect.top; // Get the y coordinate of the click
+
+          // Draw a red dot at the clicked position
+          ctx.beginPath();
+          ctx.arc(x, y, 5, 0, Math.PI * 2); // Draw a circle with a radius of 5
+          ctx.fillStyle = 'red'; // Red color for the dot
+          ctx.fill();
+        });
+      </script>
+
+      <script>
+        function fauxDecrypt(delay = 500) {
+          let index = 0;
+          let query =
+            '[+] Decrypting database ' +
+            document.getElementById('options').value +
+            ' using Decryption Scheme: ' +
+            document.getElementById('options2').value;
+          let text = [
+            '[+] Initializing...<br>',
+            query + '<br>',
+            '##',
+            '####',
+            '##',
+            '#######',
+            '#',
+            '#######<br>',
+            '<br>[+] Decryption complete.',
+            '<br>[+] Output saved to file: ',
+            document.getElementById('user-input').value + '<br>',
+          ];
+
+          function printNextLine() {
+            if (index < text.length) {
+              let outputElement = document.getElementById('console-output');
+              outputElement.innerHTML += text[index];
+              index++;
+              setTimeout(printNextLine, delay);
+            }
+          }
+          printNextLine();
+        }
+        function fauxEncrypt(delay = 500) {
+          let index = 0;
+          let query =
+            '[+] Encrypting database ' +
+            document.getElementById('options').value +
+            ' using Encryption Scheme:<br>' +
+            document.getElementById('options2').value;
+          let text = [
+            '[+] Initializing...<br>',
+            query + '<br>',
+            '##',
+            '####',
+            '##',
+            '#####',
+            '#',
+            '#######<br>',
+            '<br>[+] Encryption complete.',
+            '<br>[+] Output saved to file: ',
+            document.getElementById('user-input').value + '<br>',
+          ];
+
+          function printNextLine() {
+            if (index < text.length) {
+              let outputElement = document.getElementById('console-output');
+              outputElement.innerHTML += text[index];
+              index++;
+              setTimeout(printNextLine, delay);
+            }
+          }
+          printNextLine();
+        }
+      </script>
+    </div>
+  </body>
+  <body>
+    <!-- <div class="console-container" onclick="focusInput()">
+      <div id="console-output">Enter commands here</div>
+      <input type="text" id="console-input" class="console-input" autofocus />
+    </div> -->
+    <script>
+      const consoleInput = document.getElementById('user-input');
+      const consoleOutput = document.getElementById('console-output');
+
+      consoleInput.addEventListener('keydown', function (event) {
+        if (event.key === 'Enter') {
+          event.preventDefault();
+          const command = consoleInput.value;
+          consoleOutput.innerHTML += '\n> ' + command;
+          consoleInput.value = '';
+        }
+      });
+
+      function focusInput() {
+        consoleInput.focus();
+      }
+    </script>
+  </body>
+</html>

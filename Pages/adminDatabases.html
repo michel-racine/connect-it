@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Database Dashboard</title>
+    <link
+      rel="icon"
+      type="image/png"
+      href="../Images/connect-it-bee-icon.png" />
+    <link rel="stylesheet" href="../styles.css" />
+    <script src="../JavaScript/utils.js"></script>
+  </head>
+  <body style="background-color: rgb(162, 201, 228)">
+    <div class="background-logo2"></div>
+    <div class="header">
+      <h3>Admin Database Dashboard</h3>
+    </div>
+    <div class="menu-bar">
+      <ul>
+        <li>
+          <a href="./adminMail.html">Mail</a>
+        </li>
+        <li>
+          <a href="./adminDatabases.html">Databases</a>
+        </li>
+        <li>
+          <a href="./adminAccounts.html">Accounts</a>
+        </li>
+        <li>
+          <a href="./adminSecurity.html">Security</a>
+        </li>
+        <li>
+          <a href="./adminTesting.html">Testing</a>
+        </li>
+      </ul>
+    </div>
+    <hr />
+
+    <div class="content-container">
+      <hr />
+
+      <div class="dropdown-section">
+        <label for="options">Select Database:</label>
+        <select id="options">
+          <option value="security">Security</option>
+          <option value="accounts">Accounts</option>
+          <option value="testing">Logs</option>
+          <option value="testing">Testing</option>
+        </select>
+      </div>
+
+      <div class="dropdown-section">
+        <label for="options2">Select Stored Procedure:</label>
+        <select id="options2">
+          <option value="NONE">NONE</option>
+          <option value="AUDIT">Random Audit</option>
+          <option value="CLEAN">Cleanup Derelict Accounts</option>
+          <option value="LOG">Log Collection</option>
+          <option value="CONFIG TEST">System Config Test</option>
+        </select>
+        <br />
+        <button onclick="fauxSuccessOutput()">Submit</button>
+      </div>
+
+      <div class="input-section">
+        <input type="text" id="user-input" placeholder="Enter database query" />
+        <p id="output-text"></p>
+      </div>
+
+      <div
+        class="console-output"
+        id="console-output"
+        style="
+          background-color: black;
+          color: limegreen;
+          padding: 10px;
+          font-family: monospace;
+          font-size: 1rem;
+          text-align: left;
+          height: 200px;
+          overflow-y: auto;
+          white-space: pre-wrap;
+          border: 1px solid white;
+          margin-top: 20px;
+        "></div>
+    </div>
+  </body>
+</html>
