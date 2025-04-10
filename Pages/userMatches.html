@@ -15,32 +15,33 @@
     <div class="header">
       <h3>Match Search</h3>
     </div>
-
+    
     <div class="menu-bar">
       <ul>
         <li>
-          <a href="./userPremMail.html">Mail</a>
+          <a id="mailLink" href="./userPremMail.html">Mail</a>
         </li>
         <li>
-          <a href="./userProfile.html">Profile</a>
+          <a id="profileLink" href="./userProfile.html">Profile</a>
         </li>
         <li>
-          <a href="./userMatches.html">Matches</a>
+          <a id="matchesLink" href="./userMatches.html">Matches</a>
         </li>
         <li>
-          <a href="./userEvents.html">Events</a>
+          <a id="eventsLink" href="./userEvents.html">Events</a>
         </li>
         <li>
-          <a href="./userContact.html">Contact</a>
+          <a id="contactLink" href="./userContact.html">Contact</a>
         </li>
         <li>
-          <a href="./userPremCC.html">Payment Info</a>
+          <a id="ccLink" href="./userPremCC.html">Payment Info</a>
         </li>
       </ul>
     </div>
-
+    
     <div class="match-container">
       <h2>Enter Your Match Parameters</h2>
+      <h3 id="mailLimitWarning" style="color: red"></h3>
       <div style="width: 100%; height: 1px; background-color: rgba(0,0,0,0.5); margin-bottom: 1%;"></div>
       <form id="search-form">
         <div
@@ -78,54 +79,75 @@
               <option value="Go">Go</option>
             </select>
           </div>
-          <div
-          class="dropdown-section"
-          style="display: flex; flex-direction: column; gap: 8px;">
-          <label>Choose an option:</label>
-        
-          <div style="display: flex; align-items: center; gap: 8px;">
-            <input type="radio" id="optionA" name="choice" value="romance" />
-            <label for="optionA">Romantic</label>
+          <div class="dropdown-section">
+            <label for="optionsAge">Age Range:</label>
+            <select id="optionsAge" multiple>
+              <option value="18-24">18–24</option>
+              <option value="25-34">25–34</option>
+              <option value="35-44">35–44</option>
+              <option value="45-54">45–54</option>
+              <option value="55-64">55–64</option>
+              <option value="65+">65+</option>
+            </select>
           </div>
-        
-          <div style="display: flex; align-items: center; gap: 8px;">
-            <input type="radio" id="optionB" name="choice" value="professional"/>
-            <label for="optionB">Professional</label>
+          <div class="dropdown-section">
+            <label for="optionsType">Type:</label>
+            <select id="optionsType" multiple>
+              <option value="romantic">Romantic</option>
+              <option value="professional">Professional</option>
+              <option value="friendship">Friendship</option>
+              <option value="collaboration">Collaboration</option>
+            </select>
           </div>
-        
-          <div style="display: flex; align-items: center; gap: 8px;">
-            <input type="radio" id="optionC" name="choice" value="friendship" />
-            <label for="optionC">Friendship</label>
-          </div>
-        </div>
       </form>
     </div>
+       
     <button id="submitButton" type="submit">Submit</button>
     <script>
         // This line from ChatGPT
-        const radioValue = document.querySelector('input[name="choice"]:checked')?.value;
+        // const radioValue = document.querySelector('input[name="choice"]:checked')?.value;
 
-        document.getElementById('submitButton').addEventListener('click', function (){
-        var s = 'SEARCHING RESULTS FOR MATCHES INCLUDING:\n';
-        for (var i = 0; i < document.forms[0][0].length; ++i) {
-          s += document.forms[0][0][i].selected === true ? document.forms[0][0][i].value + ' | ' : '';
-        }
-        s += "\nCROSS-REFERENCE: \n";
-        for (var i = 0; i < document.forms[0][1].length; ++i) {
-          s += document.forms[0][1][i].selected === true ? document.forms[0][1][i].value + ' | ' : '';
-        }
+      document.getElementById('submitButton').addEventListener('click', function (){
+        let outputElement = document.getElementById('search-results');
+        outputElement.textContent = "";
 
         let text = [
-            '[+] 7 Possible Matches Found',
-          ];
-          for (var i = 0; i < text.length; ++i) {
-            setTimeout(yow(text[i]), 500);
-          }
-          function yow(texto) {
-            let outputElement = document.getElementById('search-results');
-            outputElement.textContent += texto;
-          }
+          '[+] 7 Possible Matches Found ',
+          'for query: '
+        ];
+        for (var i = 0; i < document.forms[0][0].length; ++i) {
+          text.push(document.forms[0][0][i].selected === true ? document.forms[0][0][i].value + ' | ' : '');
+        }
+        for (var i = 0; i < document.forms[0][1].length; ++i) {
+          text.push(document.forms[0][1][i].selected === true ? document.forms[0][1][i].value + ' | ' : '');
+        }
+        for (var i = 0; i < document.forms[0][2].length; ++i) {
+          text.push(document.forms[0][2][i].selected === true ? document.forms[0][2][i].value + ' | ' : '');
+        }
+        for (var i = 0; i < document.forms[0][3].length; ++i) {
+          text.push(document.forms[0][3][i].selected === true ? document.forms[0][3][i].value + ' | ' : '');
+        }
+        for (var i = 0; i < document.forms[0][4].length; ++i) {
+          text.push(document.forms[0][4][i].selected === true ? document.forms[0][4][i].value + ' | ' : '');
+        }
+        
+        for (var i = 0; i < text.length; ++i) {
+          setTimeout(yow(text[i]), 400);
+        }
+        function yow(texto) {
+          let outputElement = document.getElementById('search-results');
+          outputElement.textContent += texto;
+        }
+
+        if (!username.includes('joe')) {
+          var q = document.getElementById('mailLimitWarning');
+          q.innerHTML = "As free user, you have 3 searches left...";
+        }
+
       });
+
+
+
     </script>
     <div>
       <textarea id='search-results' placeholder='Search results' readonly style="font-size: 1.5em; color: rgba(0,255,0,1); background-color: black; width: 60%; height: 200px; margin-top: 2%;">
@@ -148,6 +170,50 @@
             (option) => option.value
           );
           console.log('Selected options:', selected);
+
+          
+          var q = document.getElementById('mailLimitWarning').innerHTML = "As free user, you have 3 searches left";
+        });
+
+      const urlParams = new URLSearchParams(window.location.search);
+      const username = urlParams.get('username');
+
+      // document.getElementById('user-name').textContent = username;
+      document
+        .getElementById('profileLink')
+        .addEventListener('click', function (event) {
+          this.href =
+            './userProfile.html?username=' + encodeURIComponent(username);
+        });
+      document
+        .getElementById('mailLink')
+        .addEventListener('click', function (event) {
+          this.href =
+            './userPremMail.html?username=' + encodeURIComponent(username);
+        });
+      document
+        .getElementById('matchesLink')
+        .addEventListener('click', function (event) {
+          this.href =
+            './userMatches.html?username=' + encodeURIComponent(username);
+        });
+      document
+        .getElementById('eventsLink')
+        .addEventListener('click', function (event) {
+          this.href =
+            './userEvents.html?username=' + encodeURIComponent(username);
+        });
+      document
+        .getElementById('contactLink')
+        .addEventListener('click', function (event) {
+          this.href =
+            './userContact.html?username=' + encodeURIComponent(username);
+        });
+      document
+        .getElementById('ccLink')
+        .addEventListener('click', function (event) {
+          this.href =
+            './userPremCC.html?username=' + encodeURIComponent(username);
         });
     </script>
   </body>

@@ -28,22 +28,22 @@
     <div class="menu-bar">
       <ul>
         <li>
-          <a href="./userPremMail.html">Mail</a>
+          <a id="mailLink" href="./userPremMail.html">Mail</a>
         </li>
         <li>
-          <a href="./userProfile.html">Profile</a>
+          <a id="profileLink" href="./userProfile.html">Profile</a>
         </li>
         <li>
-          <a href="./userMatches.html">Matches</a>
+          <a id="matchesLink" href="./userMatches.html">Matches</a>
         </li>
         <li>
-          <a href="./userEvents.html">Events</a>
+          <a id="eventsLink" href="./userEvents.html">Events</a>
         </li>
         <li>
-          <a href="./userContact.html">Contact</a>
+          <a id="contactLink" href="./userContact.html">Contact</a>
         </li>
         <li>
-          <a href="./userPremCC.html">Payment Info</a>
+          <a id="ccLink" href="./userPremCC.html">Payment Info</a>
         </li>
       </ul>
     </div>
@@ -95,6 +95,49 @@
         .addEventListener('submit', function (event) {
           event.preventDefault();
           alert('Payment information submitted successfully!');
+        });
+
+      const urlParams = new URLSearchParams(window.location.search);
+      const username = urlParams.get('username');
+
+      document.getElementById('cardholder-name').value = username;
+
+      // document.getElementById('user-name').textContent = username;
+      document
+        .getElementById('profileLink')
+        .addEventListener('click', function (event) {
+          this.href =
+            './userProfile.html?username=' + encodeURIComponent(username);
+        });
+      document
+        .getElementById('mailLink')
+        .addEventListener('click', function (event) {
+          this.href =
+            './userPremMail.html?username=' + encodeURIComponent(username);
+        });
+      document
+        .getElementById('matchesLink')
+        .addEventListener('click', function (event) {
+          this.href =
+            './userMatches.html?username=' + encodeURIComponent(username);
+        });
+      document
+        .getElementById('eventsLink')
+        .addEventListener('click', function (event) {
+          this.href =
+            './userEvents.html?username=' + encodeURIComponent(username);
+        });
+      document
+        .getElementById('contactLink')
+        .addEventListener('click', function (event) {
+          this.href =
+            './userContact.html?username=' + encodeURIComponent(username);
+        });
+      document
+        .getElementById('ccLink')
+        .addEventListener('click', function (event) {
+          this.href =
+            './userPremCC.html?username=' + encodeURIComponent(username);
         });
     </script>
   </body>

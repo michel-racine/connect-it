@@ -13,25 +13,27 @@
     <div class="header">
       <h3>Mail</h3>
     </div>
+
+    
     <div class="menu-bar">
       <ul>
         <li>
-          <a href="./userPremMail.html">Mail</a>
+          <a id="mailLink" href="./userPremMail.html">Mail</a>
         </li>
         <li>
-          <a href="./userProfile.html">Profile</a>
+          <a id="profileLink" href="./userProfile.html">Profile</a>
         </li>
         <li>
-          <a href="./userMatches.html">Matches</a>
+          <a id="matchesLink" href="./userMatches.html">Matches</a>
         </li>
         <li>
-          <a href="./userEvents.html">Events</a>
+          <a id="eventsLink" href="./userEvents.html">Events</a>
         </li>
         <li>
-          <a href="./userContact.html">Contact</a>
+          <a id="contactLink" href="./userContact.html">Contact</a>
         </li>
         <li>
-          <a href="./userPremCC.html">Payment Info</a>
+          <a id="ccLink" href="./userPremCC.html">Payment Info</a>
         </li>
       </ul>
     </div>
@@ -51,6 +53,7 @@
         <span class="close" onclick="closeModal()">&times;</span>
         <h2>Incoming Mail</h2>
         <ul class="email-list">
+          <li id="surveyEmail">admin: Please fill out this first date survey...</li>
           <li>alice@example.com [Great meeting]</li>
           <li>bob@example.com [How is it going?]</li>
           <li>charlie@example.com [Change of plans...]</li>
@@ -82,10 +85,35 @@
           <li class="q">november@example.com [Where were you guys?]</li>
           <li class="q">oscar@example.com [Are you still alive?]</li>
           <li class="q">papa@example.com [Dude, where's my car?]</li>
-          <li class="q">quebec@example.com [I can't feel my legs]</li>
-          <li class="q">romeo@example.com [Do you got the stuff?]</li>
         </ul>
         <button onclick="clearDeletedEmails()">Clear</button>
+      </div>
+    </div>
+
+    <div id="surveyModal" class="modal">
+      <div class="modal-content">
+        <span class="close" onclick="closeSurveyModal()">&times;</span>
+        <h2>First Date Survey</h2>
+        <p>We hope your first date went well! Please take a moment to complete our short survey to help improve future matches.</p>
+        <form>
+          <label>How was your date?</label><br />
+          <select title="Q1" required>
+            <option value="">Select one</option>
+            <option value="great">Great</option>
+            <option value="ok">Okay</option>
+            <option value="bad">Not great</option>
+          </select><br /><br />
+        
+          <label>Would you like to see this person again?</label><br />
+          <input title="Q2" type="radio" name="seeAgain" value="yes" required /> Yes<br />
+          <input title="Q3" type="radio" name="seeAgain" value="no" /> No<br /><br />
+        
+          <label>Additional comments:</label><br />
+          <textarea title="Q3" rows="3" style="width: 100%;"></textarea><br /><br />
+        
+          <button type="submit">Submit</button>
+        </form>
+        
       </div>
     </div>
 
@@ -103,9 +131,7 @@
           document.getElementById('deletedButton').innerHTML = 'Deleted (0)';
         }
       }
-    </script>
 
-    <script>
       // Open Modal
       function openModal() {
         document.getElementById('emailModal').style.display = 'block';
@@ -133,6 +159,46 @@
           closeModal();
         }
       };
-    </script>
+
+      const urlParams = new URLSearchParams(window.location.search);
+      const username = urlParams.get('username');
+
+      // document.getElementById('user-name').textContent = username;
+      document.getElementById('profileLink').addEventListener('click', function(event) {
+        this.href = "./userProfile.html?username=" + encodeURIComponent(username);
+      });
+      document.getElementById('mailLink').addEventListener('click', function(event) {
+        this.href = "./userPremMail.html?username=" + encodeURIComponent(username);
+      });
+      document.getElementById('matchesLink').addEventListener('click', function(event) {
+        this.href = "./userMatches.html?username=" + encodeURIComponent(username);
+      });
+      document.getElementById('eventsLink').addEventListener('click', function(event) {
+        this.href = "./userEvents.html?username=" + encodeURIComponent(username);
+      });
+      document.getElementById('contactLink').addEventListener('click', function(event) {
+        this.href = "./userContact.html?username=" + encodeURIComponent(username);
+      });
+      document.getElementById('ccLink').addEventListener('click', function(event) {
+        this.href = "./userPremCC.html?username=" + encodeURIComponent(username);
+      });
+
+      // Handle our survey email:
+      document.getElementById('surveyEmail').addEventListener('click', function () {
+    document.getElementById('surveyModal').style.display = 'block';
+  });
+
+  function closeSurveyModal() {
+    document.getElementById('surveyModal').style.display = 'none';
+  }
+
+  window.onclick = function (event) {
+    if (event.target === document.getElementById('emailModal')) {
+      closeModal();
+    } else if (event.target === document.getElementById('surveyModal')) {
+      closeSurveyModal();
+    }
+  };
+</script>
   </body>
 </html>

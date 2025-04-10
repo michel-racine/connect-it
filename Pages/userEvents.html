@@ -3,7 +3,7 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Events</title>
+    <title>Locationing</title>
     <link
       rel="icon"
       type="image/png"
@@ -13,28 +13,28 @@
   <body>
     <div class="background-logo2"></div>
     <div class="header">
-      <h3>Events</h3>
+      <h3>Locationing</h3>
     </div>
 
     <div class="menu-bar">
       <ul>
         <li>
-          <a href="./userPremMail.html">Mail</a>
+          <a id="mailLink" href="./userPremMail.html">Mail</a>
         </li>
         <li>
-          <a href="./userProfile.html">Profile</a>
+          <a id="profileLink" href="./userProfile.html">Profile</a>
         </li>
         <li>
-          <a href="./userMatches.html">Matches</a>
+          <a id="matchesLink" href="./userMatches.html">Matches</a>
         </li>
         <li>
-          <a href="./userEvents.html">Events</a>
+          <a id="eventsLink" href="./userEvents.html">Events</a>
         </li>
         <li>
-          <a href="./userContact.html">Contact</a>
+          <a id="contactLink" href="./userContact.html">Contact</a>
         </li>
         <li>
-          <a href="./userPremCC.html">Payment Info</a>
+          <a id="ccLink" href="./userPremCC.html">Payment Info</a>
         </li>
       </ul>
     </div>
@@ -48,9 +48,10 @@
           margin-bottom: 1%;
         "></div>
       <form id="search-form">
-        <div
-          style="display: flex; flex-direction: flex-start; margin: 3% 4% 0 4%">
-          <div class="dropdown-section">
+        <div style="align-content: center; margin: 3% 4% 0 4%">
+          <h3>Select your location on map to let others know where you are</h3>
+          <br />
+          <!-- <div class="dropdown-section">
             <label for="radius">Select Match Radius (km):</label>
             <select id="radius">
               <option value="10">10</option>
@@ -58,11 +59,12 @@
               <option value="50">50</option>
               <option value="100">100</option>
             </select>
-          </div>
+          </div> -->
         </div>
       </form>
       <br />
       <iframe
+        id="mapFrame"
         src="https://www.google.com/maps/embed?pb=!1m14!1m12!1m3!1d23349.421630777622!2d-81.23860085!3d42.98506239999999!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!5e0!3m2!1sen!2sca!4v1744129485428!5m2!1sen!2sca"
         width="600"
         height="450"
@@ -82,5 +84,85 @@
       ><br />
       <button id="submitButton" type="submit">Submit</button>
     </div>
+    <canvas
+      id="mapCanvas"
+      width="1000"
+      height="1000"
+      style="position: absolute; top: 0; left: 0; z-index: 1"></canvas>
+
+    <script>
+      const canvas = document.getElementById('mapCanvas');
+      const ctx = canvas.getContext('2d');
+
+      // Set canvas size to match the image dimensions
+      canvas.width = 1000; // document.getElementById('mapFrame').width;
+      canvas.height = 1000; // document.getElementById('mapFrame').height;
+
+      // Draw the image onto the canvas
+      // ctx.drawImage(mapImage, 0, 0, mapImage.width, mapImage.height);
+
+      // Handle the click event to draw red dots on the canvas
+      canvas.addEventListener('click', function (event) {
+        const rect = canvas.getBoundingClientRect();
+        const x = event.clientX - rect.left; // Get the x coordinate of the click
+        const y = event.clientY - rect.top; // Get the y coordinate of the click
+
+        // Draw a red dot at the clicked position
+        ctx.beginPath();
+        ctx.arc(x, y, 10, 0, Math.PI * 2); // Draw a circle with a radius of 5
+        ctx.fillStyle = '#ff0000';
+        ctx.fill();
+        ctx.beginPath();
+        ctx.arc(x, y, 75, 0, Math.PI * 2); // Draw a circle with a radius of 5
+        ctx.fillStyle = '#ff339944';
+        ctx.fill();
+        ctx.beginPath();
+        ctx.arc(x, y, 150, 0, Math.PI * 2); // Draw a circle with a radius of 5
+        ctx.fillStyle = '#ff339922';
+        ctx.fill();
+      });
+    </script>
   </body>
+  <script>
+    const urlParams = new URLSearchParams(window.location.search);
+    const username = urlParams.get('username');
+
+    // document.getElementById('user-name').textContent = username;
+    document
+      .getElementById('profileLink')
+      .addEventListener('click', function (event) {
+        this.href =
+          './userProfile.html?username=' + encodeURIComponent(username);
+      });
+    document
+      .getElementById('mailLink')
+      .addEventListener('click', function (event) {
+        this.href =
+          './userPremMail.html?username=' + encodeURIComponent(username);
+      });
+    document
+      .getElementById('matchesLink')
+      .addEventListener('click', function (event) {
+        this.href =
+          './userMatches.html?username=' + encodeURIComponent(username);
+      });
+    document
+      .getElementById('eventsLink')
+      .addEventListener('click', function (event) {
+        this.href =
+          './userEvents.html?username=' + encodeURIComponent(username);
+      });
+    document
+      .getElementById('contactLink')
+      .addEventListener('click', function (event) {
+        this.href =
+          './userContact.html?username=' + encodeURIComponent(username);
+      });
+    document
+      .getElementById('ccLink')
+      .addEventListener('click', function (event) {
+        this.href =
+          './userPremCC.html?username=' + encodeURIComponent(username);
+      });
+  </script>
 </html>
