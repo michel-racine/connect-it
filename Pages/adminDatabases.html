@@ -43,6 +43,8 @@
       <div class="dropdown-section">
         <label for="options">Select Database:</label>
         <select id="options">
+          <option value="azureBackup">Azure Cloud Backup</option>
+          <option value="azureEnterprise">Azure Cloud Enterprise</option>
           <option value="security">Security</option>
           <option value="accounts">Accounts</option>
           <option value="testing">Logs</option>
@@ -63,7 +65,9 @@
           <option value="Summary">Summary</option>
         </select>
         <br />
-        <button onclick="fauxSuccessOutput()">Submit</button>
+        <button onclick="fauxSuccessOutput() ; fauxDatabaseOutput()">
+          Submit
+        </button>
       </div>
 
       <div class="input-section">

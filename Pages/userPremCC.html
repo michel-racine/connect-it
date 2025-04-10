@@ -98,7 +98,9 @@
         });
 
       const urlParams = new URLSearchParams(window.location.search);
-      const username = urlParams.get('username');
+      const username = urlParams.get('username') ?? 'bradlyFree';
+      if (!username.includes('joe'))
+        document.getElementById('eventsLink').style.display = 'none';
 
       document.getElementById('cardholder-name').value = username;
 

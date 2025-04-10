@@ -5,16 +5,17 @@ function clearConsole() {
 let query = '';
 function buildQuery() {
   query +=
-    'SEARCH ' +
-    document.getElementById('options').value +
-    ' FOR ' +
+    document.getElementById('options').innerHTML +
+    ' ' +
+    document.getElementById('options2').innerHTML +
+    ' | ' +
     document.getElementById('user-input').value +
     ' ';
   document.getElementById('console-output').innerHTML = query;
 }
 
 function clearQuery() {
-  query = '';
+  // query = '';
   document.getElementById('console-output').innerHTML = query;
 }
 
@@ -38,6 +39,26 @@ function submitForm() {
   } else {
     alert('[-] One or more fields are empty');
   }
+}
+
+function fauxDatabaseOutput(delay = 500) {
+  let index = 0;
+  let text = `
+Audit Log: User "alice123" attempted access to restricted resource.
+Time: 2025-04-10 12:35:22
+Result: Failed due to insufficient privileges
+Reason: Permission denied
+---
+Audit Log: User "bob_smith" successfully logged in.
+Time: 2025-04-10 12:42:11
+Result: Success
+---
+Audit Log: User "joe_admin" modified account details for user "charlie456".
+Time: 2025-04-10 12:50:33
+Result: Success
+  `;
+  let outputElement = document.getElementById('console-output');
+  outputElement.innerHTML += text;
 }
 
 function fauxSuccessOutput(delay = 500) {

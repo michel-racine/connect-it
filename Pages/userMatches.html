@@ -54,6 +54,7 @@
               <option value="20">20</option>
               <option value="50">50</option>
               <option value="100">100</option>
+              <option value="unlimited">unlimited</option>
             </select>
           </div>
 
@@ -99,6 +100,15 @@
               <option value="collaboration">Collaboration</option>
             </select>
           </div>
+          <div id="premiumFeature" class="dropdown-section">
+            <label for="optionsRating">Order By:</label>
+            <select id="optionsRating" multiple>
+              <option value="orderByRating">Rating</option>
+              <option value="orderByDistance">Distance</option>
+              <option value="unRated">Include Unrated</option>
+            </select>
+          </div>
+
       </form>
     </div>
        
@@ -112,8 +122,7 @@
         outputElement.textContent = "";
 
         let text = [
-          '[+] 7 Possible Matches Found ',
-          'for query: '
+          '[+] Matches Found for query: '
         ];
         for (var i = 0; i < document.forms[0][0].length; ++i) {
           text.push(document.forms[0][0][i].selected === true ? document.forms[0][0][i].value + ' | ' : '');
@@ -130,7 +139,15 @@
         for (var i = 0; i < document.forms[0][4].length; ++i) {
           text.push(document.forms[0][4][i].selected === true ? document.forms[0][4][i].value + ' | ' : '');
         }
-        
+        for (var i = 0; i < document.forms[0][5].length; ++i) {
+          text.push(document.forms[0][5][i].selected === true ? document.forms[0][5][i].value + ' | ' : '');
+        }
+        text.push("\n\nTOP THREE RESULTS:\n");
+        if (username.includes('joe'))
+          text.push("Joseph Smith, 35, London Ontario, Downtown, Java Database Professional,\nBarbara Walters, 30, Toronto, System and Security Collaboration\nHaider Jones, 30, North York Ontario, HTML and CSS Collaboration")
+        else
+          text.push("Tina Johnson, 33, London Ontario, 385 Oxford East, Python Afficionado and Database\nJohn Johnson, 44, Toronto Ontario, Security And Database Collaboration\nPaul McCartney, England, Python Professional Collaboration");
+
         for (var i = 0; i < text.length; ++i) {
           setTimeout(yow(text[i]), 400);
         }
@@ -176,8 +193,11 @@
         });
 
       const urlParams = new URLSearchParams(window.location.search);
-      const username = urlParams.get('username');
-
+      const username = urlParams.get('username') ?? 'bradlyFree';
+      if (!username.includes('joe')) {
+        document.getElementById('premiumFeature').style.display = 'none';
+        document.getElementById('eventsLink').style.display = 'none'
+      }
       // document.getElementById('user-name').textContent = username;
       document
         .getElementById('profileLink')
@@ -215,6 +235,7 @@
           this.href =
             './userPremCC.html?username=' + encodeURIComponent(username);
         });
+      
     </script>
   </body>
 </html>

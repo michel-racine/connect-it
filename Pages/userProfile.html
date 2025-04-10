@@ -33,7 +33,7 @@
           <a href="./userMatches.html">Matches</a>
         </li>
         <li>
-          <a href="./userEvents.html">Events</a>
+          <a id="eventsLink" href="./userEvents.html">Events</a>
         </li>
         <li>
           <a href="./userContact.html">Contact</a>
@@ -92,7 +92,9 @@
     <script>
       // Retrieve username from the query parameter, this is our ad hoc props
       const urlParams = new URLSearchParams(window.location.search);
-      const username = urlParams.get('username');
+      const username = urlParams.get('username') ?? 'bradlyFree';
+      if (!username.includes('joe'))
+        document.getElementById('eventsLink').style.display = 'none';
 
       // Display the username in the header
       // REM: Good example of .value vs .innerHTML
